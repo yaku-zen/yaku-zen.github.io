@@ -8,6 +8,7 @@ markdown: kramdown
 disqus: dbyll
 google_analytics: dbyll
 title: dbyll
+exclude: ["vendor"]
 
 defaults:
   -
@@ -18,10 +19,10 @@ defaults:
 
 description: Stylish Jekyll Theme
 author:
-  name: dbyll
-  email: dbyll@ismaildemirbilek.com
-  github: dbtek
-  twitter: dbtek
+  name: olg-sys
+  email:
+  github:
+  twitter:
   pinterest: asd123
   linkedin: asd123
   bio: Your stylish, minimalist theme!
