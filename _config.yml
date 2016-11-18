@@ -5,8 +5,8 @@ paginate_path: "page:num"
 exclude: ["README.md","vendor"] # files to exclude
 highlighter: pygments
 markdown: kramdown
-disqus: dbyll
-# google_analytics: dbyll
+disqus: olg-translation
+google_analytics: olg-translation
 title: olg-translation
 
 defaults:
@@ -14,7 +14,7 @@ defaults:
     scope:
       path: "" # empty string for all files
     values:
-      title: dbyll
+      title: olg-translation
 
 description: Stylish Jekyll Theme
 author:
