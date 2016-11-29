@@ -47,7 +47,7 @@ gatlingはUTF-8が標準です。もし別のエンコーディングを使用�
 
 ## Scalaコードに関して
 gatlingシミュレーションはScalaで記述します。だけど心配しないで。
-Scalaの事を多く知らなくても基本的な機能を使う事ができます。(諦めないで！真矢みき風)
+Scalaの事を多く知らなくても基本的な機能を使う事ができます。
 
 ほとんどの場合、gatlingのDSLであなたのやりたい事シミュレーションが作れます。  
 もし、さらにScalaに興味があれば、[Twitter’s Scala School.](http://twitter.github.io/scala_school)をおすすめします。
