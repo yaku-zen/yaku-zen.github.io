@@ -52,7 +52,8 @@ Scalaの事を多く知らなくても基本的な機能を使う事ができま
 ほとんどの場合、gatlingのDSLであなたのやりたい事シミュレーションが作れます。  
 もし、さらにScalaに興味があれば、[Twitter’s Scala School.](http://twitter.github.io/scala_school)をおすすめします。
 
-### Note
+### <span style="color: #ADD8E6; ">Note</span>
+
 **このドキュメントを読んで**もしヘルプが必要であれば、   
 無料で[Google Group](https://groups.google.com/forum/#!forum/gatling)に参加しましょう。
 
