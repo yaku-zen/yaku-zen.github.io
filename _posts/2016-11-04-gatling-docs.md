@@ -2,7 +2,7 @@
 layout: post
 title:  "Gatling docs"
 date:   2016-11-04 19:00:00 +0900
-categories: jekyll update
+categories: gatling
 ---
 Gatling
 
