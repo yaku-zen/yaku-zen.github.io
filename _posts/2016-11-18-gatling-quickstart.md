@@ -122,3 +122,4 @@ $GATLING_HOME/bin/recorder.sh
 
 Recorderとブラウザ設定関する情報は、[Recorder reference page.](http://gatling.io/docs/2.2.2/http/recorder.html#recorder)を確認してください。
 
+### Recorderを使用したシナリオの記録
