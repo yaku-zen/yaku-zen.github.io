@@ -85,3 +85,40 @@ Scalaの事を多く知らなくても基本的な機能を使う事ができま
 
 ## 基本
 
+## Recorderを使う
+
+シナリオの作成を簡単にするため、Gatlingに付属するツールであるRecorderを使用し、
+Webアプリケーション上の操作を記録し、Gatlingシナリオとしてエクスポートすることができます。
+
+レコーダーを起動するには、binディレクトリに配置してあるスクリプトを実行します。
+
+* On Linux/Unix:
+
+```
+$GATLING_HOME/bin/recorder.sh
+```
+
+* On Windows:
+
+```
+%GATLING_HOME%\bin\recorder.bat
+```
+
+起動すると、GUIを使用してリクエストとレスポンスの設定できます。
+
+### 起動オプション (画面参照)
+* computerdatabase package
+* BasicSimulation name
+* Follow Redirects? checked
+* Automatic Referers? checked
+* Black list first filter strategy selected
+* .*\.css, .*\.js and .*\.ico in the black list filters
+
+![GUI](http://gatling.io/docs/2.2.2/_images/recorder1.png)
+
+レコーダーを設定した後、ブラウザにGatlingRecorderのプロキシを設定し始めます。
+
+### <span style="color: #ADD8E6; ">Note</span>
+
+Recorderとブラウザ設定関する情報は、[Recorder reference page.](http://gatling.io/docs/2.2.2/http/recorder.html#recorder)を確認してください。
+
