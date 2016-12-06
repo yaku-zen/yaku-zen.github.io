@@ -123,3 +123,36 @@ $GATLING_HOME/bin/recorder.sh
 Recorderとブラウザ設定関する情報は、[Recorder reference page.](http://gatling.io/docs/2.2.2/http/recorder.html#recorder)を確認してください。
 
 ### Recorderを使用したシナリオの記録
+
+アプリケーションをみてみましょう
+
+1.'Search'という名前でタグ付け
+
+2.このwebサイトに行く[http://computer-database.gatling.io](http://computer-database.gatling.io)
+
+3.model名がmacbookなものを検索
+
+4.Macbook proを選択
+
+5.'Browse'という名前でタグ付け
+
+6.ホームページに戻る
+
+7.モデルページの'Next'ボタンを何度かクリック
+
+8.'Edit'という名前でタグ付け
+
+9.Add new computer をクリック
+
+10.formを全て入力
+
+11.Create this computer をクリック
+
+実際のユーザとして行動するため、読む時間を取らずにすぐにページ遷移しないでください。
+こうすることで、シナリオが実際のユーザに近い形で作成できます。
+
+レコーダーのstopボタンをクリックすると、シナリオの作成が完了します。
+
+作成したシナリオはgatlingをインストールしたディレクリの ``` user-files/simulations/computerdatabase ```ディレクトリの中に ``` BasicSimulation.scala ```として保存されます
+
+## Gatling scenario explained
