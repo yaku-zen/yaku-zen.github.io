@@ -153,6 +153,6 @@ Recorderとブラウザ設定関する情報は、[Recorder reference page.](htt
 
 レコーダーのstopボタンをクリックすると、シナリオの作成が完了します。
 
-作成したシナリオはgatlingをインストールしたディレクリの ``` user-files/simulations/computerdatabase ```ディレクトリの中に ``` BasicSimulation.scala ```として保存されます
+作成したシナリオはgatlingをインストールしたディレクトリの ``` user-files/simulations/computerdatabase ```ディレクトリの中に ``` BasicSimulation.scala ```として保存されます
 
 ## Gatling scenario explained
