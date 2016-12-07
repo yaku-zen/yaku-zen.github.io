@@ -155,4 +155,94 @@ Recorderとブラウザ設定関する情報は、[Recorder reference page.](htt
 
 作成したシナリオはgatlingをインストールしたディレクトリの ``` user-files/simulations/computerdatabase ```ディレクトリの中に ``` BasicSimulation.scala ```として保存されます
 
-## Gatling scenario explained
+## Gatlingシナリオの説明
+
+出力の内容は次の通り
+
+```scala
+package computerdatabase // 1
+
+import io.gatling.core.Predef._ // 2
+import io.gatling.http.Predef._
+import scala.concurrent.duration._
+
+class BasicSimulation extends Simulation { // 3
+
+  val httpConf = http // 4
+    .baseURL("http://computer-database.gatling.io") // 5
+    .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8") // 6
+    .doNotTrackHeader("1")
+    .acceptLanguageHeader("en-US,en;q=0.5")
+    .acceptEncodingHeader("gzip, deflate")
+    .userAgentHeader("Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0")
+
+  val scn = scenario("BasicSimulation") // 7
+    .exec(http("request_1")  // 8
+    .get("/")) // 9
+    .pause(5) // 10
+
+  setUp( // 11
+    scn.inject(atOnceUsers(1)) // 12
+  ).protocols(httpConf) // 13
+}
+```
+
+どういう意味でしょうか?
+
+1. package宣言
+2. 必要なクラスのimport
+3. Simulationを継承したクラスを宣言します
+4. httpリクエストに関する共通の設定
+
+### <span style="color: #ADD8E6; ">Note</span>
+
+ ```val```はscalaの定数を表します。データ型宣言がなくてもscalaコンパイラが型推論を行います
+
+5. baseURLメソッドで全てのurlリクエストに追加されます
+6. ここで設定した共通のhttpヘッダーがすべてのリクエストに対して送られる
+7. シナリオの定義
+8. httpの名前はrequest_1です。この名前はレポート出力で表示されます
+9. このURLへgetリクエストを送る
+10. 一時停止する
+
+### <span style="color: #ADD8E6; ">Note</span>
+
+デフォルトでは秒で移ります。例えば ```pause(5)```は```pause(5 seconds)```と同等の意味です
+
+11. シミュレーションを実行するのにシナリオを設定する場所
+12. scnというシナリオに、一人のユーザーを注入する事の宣言です
+13. 上記で宣言したHTTP設定を割り当てる
+
+### <span style="color: #ADD8E6; ">Note</span>
+Simulationの構造に関して詳細を知りたければ、[Simulation reference page.](http://gatling.io/docs/2.2.3/general/simulation_structure.html#simulation-structure)を確認してください。
+
+### Gatlingの実行
+
+binディレクトリにある2つ目のスクリプトを起動します。
+
+* On Linux/Unix:
+
+ ```$GATLING_HOME/bin/gatling.sh```
+
+* On Windows:
+
+ ```%GATLING_HOME%\bin\gatling.bat```
+
+simulation examplesの項目を見てください。
+
+```scala
+Choose a simulation number:
+   [0] computerdatabase.BasicSimulation
+```
+
+シミュレーションが終わると、コンソールにhtmlレポートのリンクが表示されます。
+
+### <span style="color: #ADD8E6; ">Note</span>
+
+もしGatlingが動作しなければ、[FAQ](http://gatling.io/docs/2.2.3/project/faq.html#faq)か私たちの[Google Group.](https://groups.google.com/forum/#!forum/gatling)に尋ねてください。
+
+
+## さらに進むには
+
+進む準備が整ったら、[Advanced Tutorial](http://gatling.io/docs/2.2.3/advanced_tutorial.html#advanced-tutorial).を見てください。
+
