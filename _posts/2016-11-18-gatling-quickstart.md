@@ -159,7 +159,7 @@ Recorderとブラウザ設定関する情報は、[Recorder reference page.](htt
 
 出力の内容は次の通り
 
-```scala
+```BasicSimulation.scala
 package computerdatabase // 1
 
 import io.gatling.core.Predef._ // 2
@@ -187,30 +187,32 @@ class BasicSimulation extends Simulation { // 3
 }
 ```
 
-どういう意味でしょうか?
+コードはどういう意味でしょうか?
 
 1. package宣言
 2. 必要なクラスのimport
-3. Simulationを継承したクラスを宣言します
+3. Simulationを継承したクラスを宣言
 4. httpリクエストに関する共通の設定
 
 ### <span style="color: #ADD8E6; ">Note</span>
 
  ```val```はscalaの定数を表します。データ型宣言がなくてもscalaコンパイラが型推論を行います
 
-5. baseURLメソッドで全てのurlリクエストに追加されます
-6. ここで設定した共通のhttpヘッダーがすべてのリクエストに対して送られる
+5. baseURLメソッドで全てのurlリクエストに追加
+6. ここで設定した共通のhttpヘッダーがすべてのリクエストに対して送信
 7. シナリオの定義
-8. httpの名前はrequest_1です。この名前はレポート出力で表示されます
-9. このURLへgetリクエストを送る
-10. 一時停止する
+8. httpの名前はrequest_1です。この名前はレポート出力で表示
+9. このURLへgetリクエストを送信
+10. 一時停止
 
 ### <span style="color: #ADD8E6; ">Note</span>
 
 デフォルトでは秒で移ります。例えば ```pause(5)```は```pause(5 seconds)```と同等の意味です
 
 11. シミュレーションを実行するのにシナリオを設定する場所
-12. scnというシナリオに、一人のユーザーを注入する事の宣言です
+
+12. scnというシナリオに、一人のユーザーを注入する事の宣言
+
 13. 上記で宣言したHTTP設定を割り当てる
 
 ### <span style="color: #ADD8E6; ">Note</span>
