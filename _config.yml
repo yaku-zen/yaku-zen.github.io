@@ -7,18 +7,18 @@ highlighter: pygments
 markdown: kramdown
 disqus: olg-translation
 google_analytics: olg-translation
-title: olg-translation
+title: yaku-zen
 
 defaults:
   -
     scope:
       path: "" # empty string for all files
     values:
-      title: olg-translation
+      title: yaku-zen
 
 description: Stylish Jekyll Theme
 author:
-  name: olg-sys
+  name: yaku-zen
   email:
   github:
   twitter:
