@@ -4,7 +4,7 @@ title:  "Advanced Tutorial"
 date:   2016-12-26 19:00:00 +0900
 categories: gatling
 ---
-## Advanced Tutorial
+Advanced Tutorial
 
 このセクションは、[クイックスタート](http://gatling.io/docs/2.2.3/quickstart.html#quickstart)と基本的なシュミレータでの動作を
 すでに終了していることを想定しています。
