@@ -52,11 +52,15 @@ object Edit {
   val edit = ???
 
 }
+```
 
-  /**  ??? can be used for marking methods that remain to be implemented.  
-  *  @throws NotImplementedError  
-  */  
-  def ??? : Nothing = throw new NotImplementedError
+<span style="color:red">[Tips]</span>
+
+``` tips.scala
+/**  ??? can be used for marking methods that remain to be implemented.  
+*  @throws NotImplementedError  
+*/  
+def ??? : Nothing = throw new NotImplementedError
 ```
 
   私たちのシナリオを、再利用シナリオなビジネスプロセスに書き換えます。
