@@ -87,10 +87,9 @@ val admins = scenario("Admins").exec(Search.search, Browse.browse, Edit.edit)
 
 シミュレートユーザ数を増やすには、以下のようにシミュレーションの設定を変更するだけです
 
-```
+```setup.scala
 setUp(users.inject(atOnceUsers(10)).protocols(httpConf))
 ```
-
 
 わずか10人のユーザしかセットしていません、なぜなら、テストサンプルのwebアプリケーションだからです。
 親切心でサーバをクラッシュさせないでね;-)
@@ -103,7 +102,7 @@ gatlingでは ``` rampUsers ``` で上記を再現しています。
 
 ここでは10人の一般ユーザと2人の管理ユーザを10秒で線形的に増やすので、サーバを破壊したりしません。
 
-```
+```setup.scala
 setUp(
   users.inject(rampUsers(10) over (10 seconds)),
   admins.inject(rampUsers(2) over (10 seconds))
