@@ -6,13 +6,13 @@ categories: gatling
 ---
 Advanced Tutorial
 
-このセクションは、[クイックスタート](http://gatling.io/docs/2.2.3/quickstart.html#quickstart)と基本的なシュミレータでの動作を
+このセクションは、[クイックスタート](http://gatling.io/docs/2.2.3/quickstart.html#quickstart)と基本的なシミュレータでの動作を
 すでに終了していることを想定しています。
 ここでは、より高度な内容のDSL構造で一連のリファクタリングを適用していきます。
 
 ### Step 01: Isolate processes(プロセスを分離する)
 
-今の私達のシュミレーションは、一つの大きなシナリオです。
+今の私達のシミュレーションは、一つの大きなシナリオです。
 
 最初に、Seleniumのページオブジェクトパターンに似た、ビジネスプロセスに分割します。
 これによりメンテナンスを犠牲にすることなく、一部の部品を簡単に再利用して複雑な動作を構築することができます。
@@ -54,7 +54,7 @@ object Edit {
 }
 ```
 
-<span style="color:red">[Tips]</span>
+<div style='color:red'>Tips</div>
 
 ``` tips.scala
 /**  ??? can be used for marking methods that remain to be implemented.  
@@ -67,4 +67,45 @@ def ??? : Nothing = throw new NotImplementedError
 
 ```business.scala
 val scn = scenario("Scenario Name").exec(Search.search, Browse.browse, Edit.edit)
+```
+
+### step2 仮想ユーザの設定
+
+ここまではいいですかね。一人のユーザで負荷テストができます。
+ユーザを増やしてみましょう
+
+２種類のユーザを定義しましょう：
++ 一般ユーザ: 検索,閲覧ができる
++ 管理ユーザ: 検索と閲覧と編集ができる
+
+シナリオに変換してみましょう:
+
+```scenario.scala
+val users = scenario("Users").exec(Search.search, Browse.browse)
+val admins = scenario("Admins").exec(Search.search, Browse.browse, Edit.edit)
+```
+
+シミュレートユーザ数を増やすには、以下のようにシミュレーションの設定を変更するだけです
+
+```
+setUp(users.inject(atOnceUsers(10)).protocols(httpConf))
+```
+
+
+わずか10人のユーザしかセットしていません、なぜなら、テストサンプルのwebアプリケーションだからです。
+親切心でサーバをクラッシュさせないでね;-)
+
+3000ユーザのシミュレーションをしたいけど、同時には開始したくないかもしれません。
+確かに、実際のユーザは徐々にwebアプリケーションに接続にきますね。
+
+gatlingでは ``` rampUsers ``` で上記を再現しています。
+ランプ値はユーザが線形的に増える期間を示しています。
+
+ここでは10人の一般ユーザと2人の管理ユーザを10秒で線形的に増やすので、サーバを破壊したりしません。
+
+```
+setUp(
+  users.inject(rampUsers(10) over (10 seconds)),
+  admins.inject(rampUsers(2) over (10 seconds))
+).protocols(httpConf)
 ```
