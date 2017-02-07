@@ -75,7 +75,9 @@ val scn = scenario("Scenario Name").exec(Search.search, Browse.browse, Edit.edit
 ユーザを増やしてみましょう
 
 ２種類のユーザを定義しましょう：
+
 + 一般ユーザ: 検索,閲覧ができる
+
 + 管理ユーザ: 検索と閲覧と編集ができる
 
 シナリオに変換してみましょう:
