@@ -110,3 +110,48 @@ setUp(
   admins.inject(rampUsers(2) over (10 seconds))
 ).protocols(httpConf)
 ```
+
+### Step 03: Use dynamic data with Feeders and Checks  
+(FeedersとChecksで動的データを使ってみよう)
+
+私たちは一連のユーザーを実行するようシミュレーションしましたが、しかしそれは全て同一のモデルを検索します。
+
+でもユーザーはそのような操作をしません。ユーザーは異なるモデルを検索できた方がいいですよね?
+
+全てのユーザーが同じシナリオでプレイしないように動的データが必要であり、  
+ライブシステムとはまったく異なる動作になります。(キャッシュする。JIT etc...)  
+この場合、Feedersを使うと有効です。
+
+Feedersは全ての値を含むデータソースです。Feedersは色々な型があり、もっともシンプルな型はCSV Feedersです。  
+CSV Feedersを私たちのシナリオ内で一度テストしてみましょう。
+
+``` user-files/data ```フォルダに``` search.csv ```という名前で作成してみましょう。
+
+このファイルは以下の行を含んでいます。
+
+```search.csv
+searchCriterion,searchComputerName
+Macbook,MacBook Pro
+eee,ASUS Eee PC 1005PE
+```
+
+feeder変数を宣言し、上のデータを複数ユーザーに使用してみましょう。
+
+```Search.scala
+object Search {
+
+val feeder = csv("search.csv").random // 1, 2
+
+val search = exec(http("Home")
+	.get("/"))
+	.pause(1)
+	.feed(feeder) // 3
+	.exec(http("Search")
+	.get("/computers?f=${searchCriterion}") // 4
+	.check(css("a:contains('${searchComputerName}')", "href").saveAs("computerURL"))) // 5
+	.pause(1)
+	.exec(http("Select")
+	.get("${computerURL}")) // 6
+	.pause(1)
+}
+```
